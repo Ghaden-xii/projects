@@ -15,30 +15,32 @@
     return compSelect.toLowerCase();
   } /* randomly gets a number between 1-3, based on the number rock, paper or scissors is assigned and returned in lower case. */
 
-  function getPlayerChoice() {
-    playerSelect = prompt("...Throw!!");
+  /*function getPlayerChoice(clickedButton) {
+    playerSelect = clickedButton;
     console.log("You played: "+playerSelect+"!");
-    if(playerSelect.toLowerCase() === 'rock'){
-        return playerSelect.toLowerCase();    
+    if(playerSelect === 'rock'){
+        return playerSelect;    
       }
-    if(playerSelect.toLowerCase() === 'paper'){
-        return playerSelect.toLowerCase();
+    if(playerSelect === 'paper'){
+        return playerSelect;
       }
-    if (playerSelect.toLowerCase() === 'scissors') {
-        return playerSelect.toLowerCase();            
+    if (playerSelect === 'scissors') {
+        return playerSelect;            
       }
     else{
         console.log('check your spelling');
         return alert('retry')
       }
-  }//function that verifies and returns player selection in lowercase  
+  }//function that verifies and returns player selection in lowercase */ 
 
-  function playRound() {        
+  function playRound(clickedButton) {        
     console.log("1...2...3... Rock, Paper, Scissors!!");
-    let player = getPlayerChoice();
+    let player = clickedButton;
     let computer = getComputerChoice();
+    console.log("You played: "+clickedButton+"!");
     while (player == 'rock' || player == 'paper' || player == 'scissors') {
     if (player === computer) {
+      console.log('DRAW, throw again!')
         return 'Draw';
       }
      else if (player === 'rock' && computer === 'paper'){
@@ -85,3 +87,24 @@ function playGame() {
     }
     
 }//function that plays a game of 5 rounds and keeps the score
+const start = document.querySelectorAll('button');
+const paper = document.querySelector('#paper');
+const rock = document.querySelector('#rock');
+const scissors = document.querySelector('#scissors');
+let selection = '';
+paper.addEventListener('click', () => {
+  playRound('paper')
+});
+  
+rock.addEventListener('click', () => {
+  playRound('rock');
+});
+  
+scissors.addEventListener('click', () => {
+  playRound('scissors');
+});  
+
+    
+    
+    
+    
