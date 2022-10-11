@@ -1,4 +1,20 @@
-  function getComputerChoice() {
+const start = document.querySelectorAll('button');
+const paper = document.querySelector('#paper');
+const rock = document.querySelector('#rock');
+const scissors = document.querySelector('#scissors');
+const scoreDiv = document.querySelector('#score');
+const container = document.querySelector('#container');
+const pScore = document.createElement('div');
+scoreDiv.appendChild(pScore);
+const cScore = document.createElement('div');
+scoreDiv.appendChild(cScore);
+const hist = document.querySelector('#history');
+const gameOverSel = document.createElement('div');
+container.appendChild(gameOverSel);
+let playerScore = 0;
+let compScore = 0;
+let roundResult;
+function getComputerChoice() {
     let number; 
     let compSelect;
     number = parseInt(Math.random()*3+1);
@@ -11,100 +27,87 @@
     if (number == 3) {
         compSelect = "Scissors";
       }
-    console.log('Computer played: '+compSelect);
+    hist.textContent = 'Computer played: '+compSelect+'!';
     return compSelect.toLowerCase();
-  } /* randomly gets a number between 1-3, based on the number rock, paper or scissors is assigned and returned in lower case. */
-
-  /*function getPlayerChoice(clickedButton) {
-    playerSelect = clickedButton;
-    console.log("You played: "+playerSelect+"!");
-    if(playerSelect === 'rock'){
-        return playerSelect;    
-      }
-    if(playerSelect === 'paper'){
-        return playerSelect;
-      }
-    if (playerSelect === 'scissors') {
-        return playerSelect;            
-      }
-    else{
-        console.log('check your spelling');
-        return alert('retry')
-      }
-  }//function that verifies and returns player selection in lowercase */ 
-
-  function playRound(clickedButton) {        
-    console.log("1...2...3... Rock, Paper, Scissors!!");
+  }
+  
+function playRound(clickedButton) {        
+    //alert("1...2...3... Rock, Paper, Scissors!!");
     let player = clickedButton;
     let computer = getComputerChoice();
-    console.log("You played: "+clickedButton+"!");
     while (player == 'rock' || player == 'paper' || player == 'scissors') {
-    if (player === computer) {
-      console.log('DRAW, throw again!')
-        return 'Draw';
+      if (player === computer) {
+        hist.textContent = '\nDraw!';
+        return 'draw'
       }
-     else if (player === 'rock' && computer === 'paper'){
-        console.log('Round Lost');
-        return true
-      }
-     else if (player === 'paper' && computer === 'scissors') {
-        console.log('Round Lost');
-        return true
-      } 
-     else if (player === 'scissors' && computer === 'rock'){
-        console.log('Round Lost');
-        return true
-      }
-     else {
-        console.log('You Win the Round.');
+      else if (player === 'rock' && computer === 'paper'){
+        hist.textContent = '\nRound Lost!';
         return false
       }
+      else if (player === 'paper' && computer === 'scissors') {
+        hist.textContent = '\nRound Lost!';
+        return false
+      } 
+     else if (player === 'scissors' && computer === 'rock'){
+        hist.textContent = '\nRound Lost!!';
+        return false
+      }
+     else {
+        hist.textContent = '\nYou win the round!';
+        return true
+      }
     }
-  }//plays rock paper and scissors one time and return a boolean value case there's a winner and a string if there's a draw
+  }
 
-function playGame() {
-    let pCounter = 0;
-    let cCounter = 0;
-    for (let i = 0; i < 5; i++) {
-        let roundLost = playRound();
-        if (roundLost === true) {
-            cCounter++;                
-        }
-        if (roundLost == 'Draw') {
-            pCounter++;
-            cCounter++;
-        }
-        if (roundLost == false) {
-            pCounter++;
-        }
-        console.log("Score: \nPlayer:"+pCounter+"\nComputer: "+cCounter);
-        if (pCounter >= 3 || cCounter >= 3) {
-            alert('Game Over');
-            let result = pCounter >= 3 ? 'You Win the Game, CONGRATULATIONS!' : 'You Lose the Game :(';
-            return result
-        }
+function showScore(result){
+  if (result === true) {
+    playerScore ? playerScore++:playerScore = 1;
+  }
+  if (result === false) {
+    compScore ? compScore++:compScore = 1;
+  }
+  if (result == 'draw') {
+    (playerScore || compScore) ? (playerScore++,compScore++) : (playerScore = 1, compScore = 1);
+  }
+  cScore.textContent =  'Computer: '+compScore;
+  pScore.textContent = 'Player: '+playerScore;  
+}
 
-    }
-    
-}//function that plays a game of 5 rounds and keeps the score
-const start = document.querySelectorAll('button');
-const paper = document.querySelector('#paper');
-const rock = document.querySelector('#rock');
-const scissors = document.querySelector('#scissors');
-let selection = '';
 paper.addEventListener('click', () => {
-  playRound('paper')
+  if (playerScore >= 5){
+    gameOverSel.textContent = 'Congratulations wou win the game!!!';
+    return
+  }
+  if (compScore >= 5){
+    gameOverSel.textContent ='You lose, saltbag!'
+    return
+  }
+  roundResult = playRound('paper');
+  showScore(roundResult);
 });
   
 rock.addEventListener('click', () => {
-  playRound('rock');
+  if (playerScore >= 5){
+    gameOverSel.textContent = 'Congratulations wou win the game!!!';
+    return
+  }
+  if (compScore >= 5){
+    gameOverSel.textContent ='You lose, saltbag!'
+    return
+  }
+  roundResult = playRound('rock');
+  showScore(roundResult);
 });
   
 scissors.addEventListener('click', () => {
-  playRound('scissors');
+  if (playerScore >= 5){
+    gameOverSel.textContent = 'Congratulations wou win the game!!!';
+    return
+  }
+  if (compScore >= 5){
+    gameOverSel.textContent ='You lose, saltbag!'
+    return
+  }
+  roundResult = playRound('scissors');
+  showScore(roundResult);
 });  
-
-    
-    
-    
-    
