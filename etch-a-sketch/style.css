@@ -1,17 +1,18 @@
 body{
     margin: 0;
 }
+#grid-divs{
+    height: 40px;
+}
 #container{
     margin: 0;
     display: flex;
     flex-direction: row;
     height: 100vh;
     width: 100%;
-    background-color: coral;
 }
 div{
     flex-direction: column;
-    border-style: solid;
     display: flex;
     flex-grow: 1;
 }
