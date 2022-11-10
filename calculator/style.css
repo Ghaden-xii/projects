@@ -1,0 +1,32 @@
+body{
+    justify-content: center;
+    background-color: #828900;
+    align-items: center;
+}
+#container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #292A00;
+    padding: 5px;
+    width: 520px;
+    border-collapse: collapse;
+    letter-spacing: 8px;
+    border-radius: 10px;
+}
+#display{
+    display: flex;
+    background-color: #CDCFA0;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+button{
+    width: 120px;
+    height: 60px;
+    font-size: 30px;
+    border-radius: 10%;
+    border-color: #292A00;
+    background-color: #B8B800;
+}
