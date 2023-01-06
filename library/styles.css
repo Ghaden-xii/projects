@@ -1,0 +1,28 @@
+.add {
+    padding: 10px;
+    width: 200px;
+    background-color: dimgray;
+    color: whitesmoke;
+    display: none;
+    justify-content: center;
+    align-items: center;    
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card {
+    padding: 15px;
+    background-color: darkgray;
+    color: white;
+    width: minmax(fit-content,20%);
+    border-radius: 8px;
+}
+
+#library {
+    display: flex;
+    gap: 15px;
+    margin-top: 2px;
+    padding: 5px;
+    justify-content: space-between;
+}
+
